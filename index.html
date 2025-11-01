@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NourElectro - متجر الإلكترونيات</title>
+    <meta name="description" content="متجر نور إلكترو لبيع الإلكترونيات الجديدة والمستعملة في المغرب">
+    <style>
+        :root {
+            --color-primary: #2563eb;
+            --color-primary-dark: #1e40af;
+            --color-secondary: #10b981;
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            --color-border: #e2e8f0;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-error: #ef4444;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .cart-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .cart-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            background: var(--color-error);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .filters {
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 0.7rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--color-surface);
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem;
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .category-btn:hover {
+            border-color: var(--color-primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .category-btn.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-nav {
+            background: var(--color-surface);
+            padding: 1rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .page-btn:hover {
+            border-color: var(--color-primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .page-btn.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .product-card {
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid var(--color-border);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            border-color: var(--color-primary);
+        }
+
+        .product-image {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--color-error);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            background: #f59e0b;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--color-secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .product-badge.used {
+            background: var(--color-warning);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--color-text);
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .read-more {
+            color: var(--color-primary);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .tech-specs {
+            background: var(--color-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .tech-specs.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tech-specs h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: var(--color-primary);
+        }
+
+        .tech-specs ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .tech-specs li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .tech-specs li:last-child {
+            border-bottom: none;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--color-text-light);
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--color-surface);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            left: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem;
+            background: var(--color-primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 1.3rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--color-bg);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-icon {
+            font-size: 3rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: var(--color-error);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 2px solid var(--color-border);
+            background: var(--color-bg);
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-actions button {
+            flex: 1;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit {
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: #059669;
+        }
+
+        .btn-cancel {
+            background: var(--color-border);
+            color: var(--color-text);
+        }
+
+        .btn-cancel:hover {
+            background: #cbd5e1;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--color-text-light);
+        }
+
+        .empty-cart-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        footer {
+            background: var(--color-text);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .cart-sidebar {
+                max-width: 100%;
+            }
+
+            .category-filters {
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+            .category-btn {
+                min-width: 120px;
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .category-icon {
+                font-size: 1.5rem;
+            }
+        }
+
+        .no-products {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--color-text-light);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <div>
+                    <div>NourElectro</div>
+                    <div style="font-size: 0.7rem; opacity: 0.9;">نور إلكترو</div>
+                </div>
+            </div>
+            <button class="cart-btn" onclick="toggleCart()">
+                🛒 السلة
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>مرحباً بك في NourElectro</h1>
+        <p>أفضل متجر للإلكترونيات الجديدة والمستعملة في المغرب - جودة عالية وأسعار منافسة</p>
+    </div>
+
+    <div class="container">
+        <div class="page-nav">
+            <button class="page-btn active" onclick="switchPage('all')">🏠 كل المنتجات</button>
+            <button class="page-btn" onclick="switchPage('new')">✨ الجديدة فقط</button>
+            <button class="page-btn" onclick="switchPage('used')">🔄 المستعملة فقط</button>
+        </div>
+
+        <div class="category-filters">
+            <button class="category-btn active" onclick="filterByCategory('all')">
+                <span class="category-icon">🛍️</span>
+                الكل
+            </button>
+            <button class="category-btn" onclick="filterByCategory('phone')">
+                <span class="category-icon">📱</span>
+                هواتف
+            </button>
+            <button class="category-btn" onclick="filterByCategory('laptop')">
+                <span class="category-icon">💻</span>
+                لابتوبات
+            </button>
+            <button class="category-btn" onclick="filterByCategory('accessories')">
+                <span class="category-icon">🎧</span>
+                إكسسوارات
+            </button>
+            <button class="category-btn" onclick="filterByCategory('tablet')">
+                <span class="category-icon">📱</span>
+                تابلت
+            </button>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label>🔍 بحث</label>
+                <input type="text" id="searchInput" placeholder="ابحث عن منتج..." oninput="filterProducts()">
+            </div>
+            <div class="filter-group">
+                <label>📁 الحالة</label>
+                <select id="conditionFilter" onchange="filterProducts()">
+                    <option value="all">الكل</option>
+                    <option value="new">جديد</option>
+                    <option value="used">مستعمل</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>🛒 سلة التسوق</h2>
+            <button class="close-cart" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <div class="empty-cart-icon">🛒</div>
+                <p>السلة فارغة</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                المجموع: <span id="cartTotal">0</span> درهم
+            </div>
+            <button class="checkout-btn" onclick="openCheckoutModal()">
+                إتمام الطلب عبر واتساب 📱
+            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <h2>📝 معلومات التوصيل</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label>الاسم الكامل *</label>
+                    <input type="text" id="customerName" required placeholder="مثال: محمد أحمد">
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف *</label>
+                    <input type="tel" id="customerPhone" required placeholder="مثال: 0612345678">
+                </div>
+                <div class="form-group">
+                    <label>العنوان *</label>
+                    <input type="text" id="customerAddress" required placeholder="المدينة والحي">
+                </div>
+                <div class="form-group">
+                    <label>ملاحظات إضافية</label>
+                    <textarea id="customerNotes" placeholder="أي تفاصيل إضافية..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">إرسال الطلب 📲</button>
+                    <button type="button" class="btn-cancel" onclick="closeCheckoutModal()">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <a href="https://wa.me/212688533435?text=مرحباً، أريد الاستفسار عن المنتجات" class="whatsapp-float" target="_blank">
+        📱
+    </a>
+
+    <footer>
+        <div class="footer-content">
+            <h3>⚡ NourElectro - نور إلكترو</h3>
+            <p style="margin: 1rem 0;">متجر الإلكترونيات الأول في المغرب</p>
+            <p style="opacity: 0.8;">📍 Morocco - المغرب</p>
+            <p style="opacity: 0.8;">📱 واتساب: +212 688-533435</p>
+            <p style="margin-top: 1.5rem; opacity: 0.7;">&copy; 2025 NourElectro. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: 'iPhone 13 Pro',
+                shortDesc: 'حالة ممتازة، 128GB، بطارية 91%',
+                fullDesc: 'هاتف آيفون 13 برو بحالة ممتازة جداً، استعمال خفيف، كامل الإكسسوارات، بطارية بصحة 91%',
+                price: 4500,
+                originalPrice: 5200,
+                discount: 15,
+                icon: '📱',
+                color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                condition: 'used',
+                category: 'phone',
+                promo: false,
+                specs: [
+                    'المعالج: Apple A15 Bionic',
+                    'الذاكرة: 128GB',
+                    'الشاشة: 6.1 بوصة Super Retina XDR',
+                    'الكاميرا: 12MP ثلاثية',
+                    'البطارية: 91% صحة'
+                ]
+            },
+            {
+                id: 2,
+                name: 'Samsung Galaxy S23',
+                shortDesc: 'جديد، كرتون، ضمان سنة',
+                fullDesc: 'سامسونج جالاكسي S23 جديد بالكرتون، لم يستخدم، ضمان محلي سنة كاملة',
+                price: 4680,
+                originalPrice: 5200,
+                discount: 10,
+                icon: '📱',
+                color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                condition: 'new',
+                category: 'phone',
+                promo: true,
+                specs: [
+                    'المعالج: Snapdragon 8 Gen 2',
+                    'الذاكرة: 256GB',
+                    'RAM: 8GB',
+                    'الشاشة: 6.1 بوصة Dynamic AMOLED',
+                    'الضمان: سنة كاملة'
+                ]
+            },
+            {
+                id: 3,
+                name: 'MacBook Air M2',
+                shortDesc: 'جديد، 256GB SSD، 8GB RAM',
+                fullDesc: 'ماك بوك إير M2 أحدث إصدار، جديد بالكرتون، معالج M2 القوي',
+                price: 8330,
+                originalPrice: 9800,
+                discount: 15,
+                icon: '💻',
+                color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                condition: 'new',
+                category: 'laptop',
+                promo: true,
+                specs: [
+                    'المعالج: Apple M2',
+                    'الذاكرة: 256GB SSD',
+                    'RAM: 8GB',
+                    'الشاشة: 13.6 بوصة Liquid Retina',
+                    'البطارية: حتى 18 ساعة'
+                ]
+            },
+            {
+                id: 4,
+                name: 'HP Laptop i5',
+                shortDesc: 'مستعمل، حالة جيدة، 512GB',
+                fullDesc: 'لابتوب HP بمعالج i5 جيل عاشر، حالة جيدة جداً، مثالي للدراسة',
+                price: 3200,
+                originalPrice: null,
+                discount: 0,
+                icon: '💻',
+                color: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                condition: 'used',
+                category: 'laptop',
+                promo: false,
+                specs: [
+                    'المعالج: Intel Core i5 10th Gen',
+                    'الذاكرة: 512GB SSD',
+                    'RAM: 8GB DDR4',
+                    'الشاشة: 15.6 بوصة Full HD'
+                ]
+            },
+            {
+                id: 5,
+                name: 'AirPods Pro 2',
+                shortDesc: 'جديد، كرتون، أصلي',
+                fullDesc: 'إيربودز برو 2 الجيل الثاني، جديد بالكرتون الأصلي، إلغاء ضوضاء نشط',
+                price: 1530,
+                originalPrice: 1800,
+                discount: 15,
+                icon: '🎧',
+                color: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+                condition: 'new',
+                category: 'accessories',
+                promo: false,
+                specs: [
+                    'الشريحة: H2',
+                    'إلغاء الضوضاء النشط',
+                    'الوضع الشفاف التكيفي',
+                    'مقاومة الماء IPX4'
+                ]
+            },
+            {
+                id: 6,
+                name: 'iPad Pro 11"',
+                shortDesc: 'مستعمل، 128GB، حالة ممتازة',
+                fullDesc: 'آيباد برو 11 بوصة، حالة ممتازة جداً، معالج M1 قوي',
+                price: 4320,
+                originalPrice: 4800,
+                discount: 10,
+                icon: '📱',
+                color: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+                condition: 'used',
+                category: 'tablet',
+                promo: false,
+                specs: [
+                    'المعالج: Apple M1',
+                    'الذاكرة: 128GB',
+                    'الشاشة: 11 بوصة Liquid Retina',
+                    'دعم Apple Pencil'
+                ]
+            },
+            {
+                id: 7,
+                name: 'Xiaomi Redmi Note 12',
+                shortDesc: 'جديد، ضمان، 128GB',
+                fullDesc: 'شاومي ريدمي نوت 12، جديد بالكرتون، بطارية ضخمة',
+                price: 1710,
+                originalPrice: 1900,
+                discount: 10,
+                icon: '📱',
+                color: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+                condition: 'new',
+                category: 'phone',
+                promo: false,
+                specs: [
+                    'المعالج: Snapdragon 685',
+                    'الذاكرة: 128GB',
+                    'RAM: 6GB',
+                    'البطارية: 5000mAh'
+                ]
+            },
+            {
+                id: 8,
+                name: 'Sony WH-1000XM5',
+                shortDesc: 'سماعات بلوتوث، جديد',
+                fullDesc: 'سماعات سوني WH-1000XM5 الأفضل عالمياً، إلغاء ضوضاء ممتاز',
+                price: 2000,
+                originalPrice: 2500,
+                discount: 20,
+                icon: '🎧',
+                color: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+                condition: 'new',
+                category: 'accessories',
+                promo: true,
+                specs: [
+                    'إلغاء الضوضاء: المستوى الصناعي',
+                    'مدة التشغيل: 30 ساعة',
+                    'البلوتوث: 5.2'
+                ]
+            },
+            {
+                id: 9,
+                name: 'Dell XPS 15',
+                shortDesc: 'جديد، i7، 16GB RAM، 512GB SSD',
+                fullDesc: 'ديل XPS 15 جديد بالكرتون، أقوى لابتوب للمحترفين',
+                price: 11900,
+                originalPrice: 14000,
+                discount: 15,
+                icon: '💻',
+                color: 'linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%)',
+                condition: 'new',
+                category: 'laptop',
+                promo: true,
+                specs: [
+                    'المعالج: Intel Core i7 12th Gen',
+                    'الذاكرة: 512GB NVMe SSD',
+                    'RAM: 16GB DDR5',
+                    'الشاشة: 15.6 بوصة 4K OLED'
+                ]
+            },
+            {
+                id: 10,
+                name: 'Samsung Galaxy Tab S8',
+                shortDesc: 'مستعمل، 128GB، S Pen مجاناً',
+                fullDesc: 'جالاكسي تاب S8 بحالة ممتازة، قلم S Pen أصلي مجاناً',
+                price: 3600,
+                originalPrice: 4200,
+                discount: 14,
+                icon: '📱',
+                color: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
+                condition: 'used',
+                category: 'tablet',
+                promo: false,
+                specs: [
+                    'المعالج: Snapdragon 8 Gen 1',
+                    'الذاكرة: 128GB',
+                    'RAM: 8GB',
+                    'يشمل S Pen'
+                ]
+            },
+            {
+                id: 11,
+                name: 'Apple Watch Series 8',
+                shortDesc: 'جديد، GPS، 45mm',
+                fullDesc: 'ساعة آبل سيريز 8 جديدة بالكرتون، مستشعر حرارة جديد',
+                price: 3400,
+                originalPrice: 4000,
+                discount: 15,
+                icon: '⌚',
+                color: 'linear-gradient(135deg, #f77062 0%, #fe5196 100%)',
+                condition: 'new',
+                category: 'accessories',
+                promo: true,
+                specs: [
+                    'الحجم: 45mm',
+                    'GPS مدمج',
+                    'مقاومة للماء حتى 50 متر',
+                    'مستشعر الحرارة'
+                ]
+            },
+            {
+                id: 12,
+                name: 'Lenovo Legion 5',
+                shortDesc: 'مستعمل، RTX 3060، للألعاب',
+                fullDesc: 'لينوفو ليجن 5 للألعاب، كرت RTX 3060، حالة ممتازة',
+                price: 7200,
+                originalPrice: null,
+                discount: 0,
+                icon: '💻',
+                color: 'linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)',
+                condition: 'used',
+                category: 'laptop',
+                promo: false,
+                specs: [
+                    'المعالج: AMD Ryzen 7 5800H',
+                    'الذاكرة: 512GB SSD',
+                    'RAM: 16GB',
+                    'كرت الشاشة: NVIDIA RTX 3060 6GB'
+                ]
+            }
+        ];
+
+        let cart = [];
+        let filteredProducts = [...products];
+        let currentPage = 'all';
+        let currentCategory = 'all';
+
+        function init() {
+            renderProducts();
+            updateCartUI();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            
+            if (filteredProducts.length === 0) {
+                grid.innerHTML = '<div class="no-products">لا توجد منتجات متطابقة مع البحث</div>';
+                return;
+            }
+
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    <div class="product-image" style="background: ${product.color}">
+                        ${product.icon}
+                    </div>
+                    <span class="product-badge ${product.condition === 'used' ? 'used' : ''}">${product.condition === 'new' ? '🆕 جديد' : '♻️ مستعمل'}</span>
+                    ${product.discount > 0 ? `<span class="discount-badge">-${product.discount}%</span>` : ''}
+                    ${product.promo ? '<span class="promo-badge">🎉 عرض خاص</span>' : ''}
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-desc">${product.shortDesc}</p>
+                        <span class="read-more" onclick="toggleSpecs(${product.id})">اقرأ المزيد ↓</span>
+                        <div class="tech-specs" id="specs-${product.id}">
+                            <h4>📋 المواصفات التقنية:</h4>
+                            <ul>
+                                ${product.specs.map(spec => `<li>• ${spec}</li>`).join('')}
+                            </ul>
+                            <p style="margin-top: 1rem; font-size: 0.9rem;">${product.fullDesc}</p>
+                        </div>
+                        <div class="product-price">
+                            ${product.originalPrice ? `<span class="original-price">${product.originalPrice.toLocaleString()} درهم</span>` : ''}
+                            ${product.price.toLocaleString()} درهم
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            أضف للسلة 🛒
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleSpecs(productId) {
+            const specs = document.getElementById(`specs-${productId}`);
+            specs.classList.toggle('show');
+            const btn = event.target;
+            btn.textContent = specs.classList.contains('show') ? 'إخفاء ↑' : 'اقرأ المزيد ↓';
+        }
+
+        function switchPage(page) {
+            currentPage = page;
+            document.querySelectorAll('.page-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            filterProducts();
+        }
+
+        function filterByCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            filterProducts();
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const condition = document.getElementById('conditionFilter').value;
+
+            filteredProducts = products.filter(product => {
+                const matchesSearch = !searchTerm || 
+                                    product.name.toLowerCase().includes(searchTerm) || 
+                                    product.shortDesc.toLowerCase().includes(searchTerm) ||
+                                    product.fullDesc.toLowerCase().includes(searchTerm);
+                const matchesCondition = condition === 'all' || product.condition === condition;
+                const matchesPage = currentPage === 'all' || product.condition === currentPage;
+                const matchesCategory = currentCategory === 'all' || product.category === currentCategory;
+
+                return matchesSearch && matchesCondition && matchesPage && matchesCategory;
+            });
+
+            renderProducts();
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                showNotification('⚠️ المنتج موجود بالفعل في السلة', 'warning');
+            } else {
+                cart.push({...product});
+                updateCartUI();
+                showNotification('✅ تمت الإضافة للسلة بنجاح', 'success');
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            showNotification('🗑️ تم حذف المنتج من السلة', 'info');
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            cartCount.textContent = cart.length;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <p>السلة فارغة</p>
+                    </div>
+                `;
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-icon" style="background: ${item.color}">
+                            ${item.icon}
+                        </div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toLocaleString()} درهم</div>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">حذف ❌</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTotal.textContent = total.toLocaleString();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+        }
+
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                showNotification('⚠️ السلة فارغة! أضف منتجات أولاً', 'warning');
+                return;
+            }
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('customerAddress').value;
+            const notes = document.getElementById('customerNotes').value;
+
+            let message = `🛒 *طلب جديد من NourElectro*
+
+`;
+            message += `👤 *الاسم:* ${name}
+`;
+            message += `📱 *الهاتف:* ${phone}
+`;
+            message += `📍 *العنوان:* ${address}
+
+`;
+            message += `🛍️ *المنتجات المطلوبة:*
+
+`;
+
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name}
+`;
+                message += `   الحالة: ${item.condition === 'new' ? 'جديد' : 'مستعمل'}
+`;
+                message += `   السعر: ${item.price.toLocaleString()} درهم
+
+`;
+            });
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            message += `💰 *المجموع الكلي:* ${total.toLocaleString()} درهم
+
+`;
+
+            if (notes) {
+                message += `📝 *ملاحظات:* ${notes}
+`;
+            }
+
+            const whatsappUrl = `https://wa.me/212688533435?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+
+            closeCheckoutModal();
+            cart = [];
+            updateCartUI();
+            toggleCart();
+            showNotification('✅ تم إرسال طلبك! سنتواصل معك قريباً', 'success');
+        });
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            const colors = {
+                success: '#10b981',
+                warning: '#f59e0b',
+                info: '#3b82f6',
+                error: '#ef4444'
+            };
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${colors[type]};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        init();
+    </script>
+</body>
+</html>
